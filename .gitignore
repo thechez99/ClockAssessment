@@ -1,1 +1,8 @@
 /build/
+/.idea/
+.gitignore
+build.xml
+manifest.mf
+README.md
+/nbproject/
+Clock Assessment.iml
