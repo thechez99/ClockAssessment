@@ -8,6 +8,7 @@ import java.util.Observable;
 public class View implements Observer {
     
     ClockPanel panel;
+    Menu menu;
     
     public View(Model model) {
         JFrame frame = new JFrame();
@@ -15,7 +16,11 @@ public class View implements Observer {
         //frame.setContentPane(panel);
         frame.setTitle("Java Clock");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+
+        menu = new Menu();
+
+        menu.addMenuItem("About");
+
         // Start of border layout code
         
         // I've just put a single button in each of the border positions:
@@ -45,7 +50,10 @@ public class View implements Observer {
         
         // End of borderlayout code
         
+        frame.setJMenuBar(menu);
         frame.pack();
+        frame.validate();
+        frame.repaint();
         frame.setVisible(true);
     }
     
