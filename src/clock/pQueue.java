@@ -22,6 +22,29 @@ private int size;
     }
 
     /* Class Functions */
+    public void add(Alarm item){
+
+        Alarm alarm = new Alarm();
+
+        Node addNode = new Node(alarm);
+        if(isEmpty()){
+            headNode = addNode;
+        } else {
+            Node currentNode = headNode;
+            while(currentNode.nextNode != null){
+                currentNode = currentNode.nextNode;
+            }
+            currentNode.nextNode = addNode;
+        }
+
+        size++;
+        sort();
+    }
+
+    /* Class Supporting Functions */
+    private boolean isEmpty(){
+
+    }
 
 
 
