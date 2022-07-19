@@ -43,8 +43,49 @@ private int size;
 
     /* Class Supporting Functions */
     private boolean isEmpty(){
-
+        return size == 0;
     }
+
+    public Alarm head() throws Exception{
+        return headNode.getNodeData();
+    }
+
+    protected void sort(){
+        if(size > 1){
+            for(int i = 0; i< size; i++){
+                Node currentNode = headNode;
+                Node next = currentNode.nextNode;
+                for(int j = 0; j < size - 1; j++){
+                    if (currentNode.getNodeData().getAlarmTime().isAfter(next.getNodeData().getAlarmTime())) {
+                        Node temp = currentNode;
+                        currentNode = next;
+                        next = temp;
+                    }
+                    currentNode = next;
+                    next = next.nextNode;
+                }
+            }
+        }
+    }
+
+    public String toString(){
+        String result = "[";
+
+        if(isEmpty()){
+            result += " Queue is Empty ]";
+        } else {
+            Node tempNode = headNode;
+
+            while(tempNode != null){
+                result += tempNode.getNodeData().toString() + "], ";
+                tempNode = tempNode.nextNode;
+            }
+        }
+
+        return result;
+    }
+
+
 
 
 
