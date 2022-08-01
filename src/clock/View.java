@@ -9,6 +9,7 @@ public class View implements Observer {
     
     ClockPanel panel;
     Menu menu;
+    pQueue alarmQueue = new pQueue();
     
     public View(Model model) {
         JFrame frame = new JFrame();
@@ -18,6 +19,8 @@ public class View implements Observer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         menu = new Menu();
+        Alarm ringRing = new Alarm();
+        ringRing.addAlarm();
 
         menu.addMenuItem("About");
 

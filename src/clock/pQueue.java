@@ -8,6 +8,8 @@
 
 package clock;
 
+import java.time.LocalTime;
+
 public class pQueue {
 
 private Node headNode;
@@ -39,6 +41,12 @@ private int size;
 
         size++;
         sort();
+    }
+
+    public void remove(LocalTime priority){
+
+        /* @TODO Add remove functionality based on the time given */
+
     }
 
     /* Class Supporting Functions */
@@ -84,10 +92,6 @@ private int size;
 
         return result;
     }
-
-
-
-
 
     /* pQueue Subclass */
     class Node{
