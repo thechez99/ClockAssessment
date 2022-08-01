@@ -2,6 +2,8 @@ package clock;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Observer;
 import java.util.Observable;
 
@@ -19,8 +21,8 @@ public class View implements Observer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         menu = new Menu();
-        Alarm ringRing = new Alarm();
-        ringRing.addAlarm();
+        /*Alarm ringRing = new Alarm();
+        ringRing.addAlarm();*/
 
         menu.addMenuItem("About");
 
@@ -45,8 +47,15 @@ public class View implements Observer {
         button = new JButton("Button 3 (LINE_START)");
         pane.add(button, BorderLayout.LINE_START);
          
-        button = new JButton("Long-Named Button 4 (PAGE_END)");
-        pane.add(button, BorderLayout.PAGE_END);
+        JButton addButton = new JButton("Add Alarm");
+        pane.add(addButton, BorderLayout.PAGE_END);
+        addButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                Dialog d = new Dialog();
+                d.messageDialog("ALERT", "Button Pressed");
+            }
+        });
+
          
         button = new JButton("5 (LINE_END)");
         pane.add(button, BorderLayout.LINE_END);

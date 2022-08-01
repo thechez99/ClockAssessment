@@ -42,6 +42,9 @@ public class Alarm {
     }
 
     public LocalTime addAlarm(){
+
+        Object hour = null;
+
         Integer[] hourArray = new Integer[24];
 
         for(Integer i = 0; i < 24; i++){
@@ -55,7 +58,10 @@ public class Alarm {
         }
 
         Dialog d = new Dialog();
-        Object hour = d.selectDialog("What hour should the alarm go off?", hourArray);
+        do{
+            hour = d.selectDialog("What hour should the alarm go off?", hourArray);
+        } while (hour == null);
+
         Object minute = d.selectDialog("What minute should the alarm go off in the " + hour + "hour of the day?", minuteArray);
 
         String formatTime = hour + ":" + minute + ":00";
