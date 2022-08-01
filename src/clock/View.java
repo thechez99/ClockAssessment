@@ -51,8 +51,7 @@ public class View implements Observer {
         pane.add(addButton, BorderLayout.PAGE_END);
         addButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e){
-                Dialog d = new Dialog();
-                d.messageDialog("ALERT", "Button Pressed");
+                alarmQueue.add();
             }
         });
 

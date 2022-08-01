@@ -10,7 +10,7 @@ package clock;
 
 import java.time.LocalTime;
 
-public class pQueue {
+public class pQueue extends Alarm {
 
 private Node headNode;
 private int size;
@@ -24,9 +24,10 @@ private int size;
     }
 
     /* Class Functions */
-    public void add(Alarm item){
+    public void add(){
 
         Alarm alarm = new Alarm();
+        alarm.addAlarm();
 
         Node addNode = new Node(alarm);
         if(isEmpty()){
