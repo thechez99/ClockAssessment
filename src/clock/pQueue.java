@@ -51,7 +51,7 @@ private int size;
     }
 
     /* Class Supporting Functions */
-    private boolean isEmpty(){
+    public boolean isEmpty(){
         return size == 0;
     }
 
@@ -78,17 +78,16 @@ private int size;
     }
 
     public String toString(){
-        String result = "[";
+        String result = "";
 
         if(isEmpty()){
-            result += " Queue is Empty ]";
+            result += " Queue is Empty ";
         } else {
             Node tempNode = headNode;
-
-            while(tempNode != null){
-                result += tempNode.getNodeData().toString() + "], ";
+            do{
+                result += tempNode.getNodeData().getAlarmTime() + ", ";
                 tempNode = tempNode.nextNode;
-            }
+            } while(tempNode != null);
         }
 
         return result;

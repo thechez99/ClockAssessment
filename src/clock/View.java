@@ -44,8 +44,18 @@ public class View implements Observer {
         panel.setPreferredSize(new Dimension(200, 200));
         pane.add(panel, BorderLayout.CENTER);
          
-        button = new JButton("Button 3 (LINE_START)");
-        pane.add(button, BorderLayout.LINE_START);
+        JButton listButton = new JButton("View Alarms");
+        pane.add(listButton, BorderLayout.LINE_START);
+        listButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Dialog d = new Dialog();
+                if(alarmQueue.isEmpty()){
+                    d.messageDialog("No Alarms", "There are no alarms currently set.");
+                } else{
+                    d.messageDialog("Alarm Times", "Your alarms will go off at: " + alarmQueue.toString());
+                }
+            }
+        });
          
         JButton addButton = new JButton("Add Alarm");
         pane.add(addButton, BorderLayout.PAGE_END);
