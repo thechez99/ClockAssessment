@@ -2,7 +2,7 @@ package clock;
 
 import javax.swing.*;
 
-class Dialog{
+class Dialog extends JOptionPane{
 
     public Dialog() {
 
@@ -21,6 +21,10 @@ class Dialog{
                 null,
                 inputArray,
                 inputArray[0]);
+    }
+
+    public void warningDialog(String title, String message){
+        JOptionPane.showMessageDialog(getParent(), message, title, WARNING_MESSAGE);
     }
 }
 

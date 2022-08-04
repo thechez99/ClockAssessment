@@ -1,5 +1,8 @@
 package clock;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalTime;
@@ -78,10 +81,29 @@ public class Alarm {
         d.messageDialog("Alarm set", "Your alarm will go off at " + this.alarmTime);
     }
 
-    private void ring() {
-        if(getSystemTime().equals(alarmTime)){
-            System.out.println("Alarm time has rung");
-        };
+    public void ring() {
+        final String url = "chime.wav";
+        Dialog d = new Dialog();
+
+
+
+        //Set up for playing alarm chime from sound file.
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    Clip clip = AudioSystem.getClip();
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(
+                            Alarm.class.getResourceAsStream("media/" + url));
+                    clip.open(inputStream);
+                    clip.start();
+                    d.warningDialog("Alarm Time!", "This is your alarm! \n This selecting OK will remove the alarm from your queue");
+                } catch (Exception e){
+                    System.err.println(e.getMessage());
+                }
+            }
+
+        }).start();
     }
 
     protected void checkForAlarm(){

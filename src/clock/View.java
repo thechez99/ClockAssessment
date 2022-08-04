@@ -21,10 +21,9 @@ public class View implements Observer {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         menu = new Menu();
-        /*Alarm ringRing = new Alarm();
-        ringRing.addAlarm();*/
-
         menu.addMenuItem("About");
+        //frame.setJMenuBar(menu);
+
 
         // Start of border layout code
         
@@ -66,12 +65,18 @@ public class View implements Observer {
         });
 
          
-        button = new JButton("5 (LINE_END)");
-        pane.add(button, BorderLayout.LINE_END);
+        JButton chimeButton = new JButton("Test Chime");
+        pane.add(chimeButton, BorderLayout.LINE_END);
+        chimeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e){
+                Alarm a = new Alarm();
+                a.ring();
+            }
+        });
         
         // End of borderlayout code
         
-        frame.setJMenuBar(menu);
+        //frame.setJMenuBar(menu);
         frame.pack();
         frame.validate();
         frame.repaint();
