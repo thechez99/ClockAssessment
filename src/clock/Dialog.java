@@ -9,7 +9,7 @@ class Dialog extends JOptionPane{
     }
 
     public void messageDialog(String title, String message){
-        JOptionPane.showMessageDialog(null, message, title, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(getParent(), message, title, JOptionPane.INFORMATION_MESSAGE);
     }
 
     public Object selectDialog(String message, Integer[] inputArray){

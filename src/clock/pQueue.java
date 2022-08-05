@@ -8,6 +8,7 @@
 
 package clock;
 
+import java.awt.event.ActionListener;
 import java.time.LocalTime;
 
 public class pQueue extends Alarm {
@@ -46,7 +47,22 @@ private int size;
 
     public void remove(LocalTime priority){
 
-        /* @TODO Add remove functionality based on the time given */
+        if(this.size > 1){
+            for (int i = 0; i < size; i++){
+                Node currentNode  = headNode;
+                Node nextNode = currentNode.nextNode;
+                for(int j = 0; j < size; j++){
+                    if(currentNode.getNodeData().getAlarmTime().equals(priority)){
+                        currentNode = nextNode;
+
+                    } else{
+                        currentNode.getNextNode();
+                    }
+                }
+            }
+        } else{
+            headNode = null;
+        }
 
     }
 
@@ -57,6 +73,29 @@ private int size;
 
     public Alarm head() throws Exception{
         return headNode.getNodeData();
+    }
+
+    public void checkForAlarms(){
+
+        /*
+        * This function will run a separate thread which will execute once a minute
+        * to see if an alarm is ready to ring. If it is then the alarm will ring.
+        * */
+
+        /*new Thread(new Runnable(){
+            @Override
+            public void run(Node currenNode){
+
+                try {
+                    if (currenNode.getNodeData().getAlarmTime().equals(LocalTime.now())){
+                        Thread.sleep(60000);
+                    }
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        }).start();*/
     }
 
     protected void sort(){
@@ -91,6 +130,10 @@ private int size;
         }
 
         return result;
+    }
+
+    public void removeFromQueue(){
+
     }
 
     /* pQueue Subclass */

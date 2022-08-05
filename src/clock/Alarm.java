@@ -81,7 +81,7 @@ public class Alarm {
         d.messageDialog("Alarm set", "Your alarm will go off at " + this.alarmTime);
     }
 
-    public void ring() {
+    protected void ring() {
         final String url = "chime.wav";
         Dialog d = new Dialog();
 
@@ -105,10 +105,11 @@ public class Alarm {
 
         }).start();
     }
-
-    protected void checkForAlarm(){
-
-
-
-    }
 }
+
+/*
+* SOURCES:
+* ring(): How Can I play a sound in Java? StackOverflow https://stackoverflow.com/questions/26305/how-can-i-play-sound-in-java
+*
+*
+* */

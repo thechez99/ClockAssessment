@@ -2,7 +2,7 @@ package clock;
 
 import javax.swing.*;
 
-public class Menu extends JMenu {
+public class Menu extends JMenuBar {
 
     JMenuBar mBar;
     JMenu menu;

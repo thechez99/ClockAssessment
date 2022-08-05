@@ -2,15 +2,13 @@ package clock;
 
 import java.awt.*;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.util.Observer;
 import java.util.Observable;
 
 public class View implements Observer {
     
     ClockPanel panel;
-    Menu menu;
     pQueue alarmQueue = new pQueue();
     
     public View(Model model) {
@@ -20,9 +18,32 @@ public class View implements Observer {
         frame.setTitle("Java Clock");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        menu = new Menu();
-        menu.addMenuItem("About");
-        //frame.setJMenuBar(menu);
+        //Menu Code
+
+        JMenuBar menuBar;
+        JMenu menu, subMenu;
+        JMenuItem menuItem;
+
+        menuBar = new JMenuBar();
+
+        menu = new JMenu("Alarm Menu");
+        menu.setMnemonic(KeyEvent.VK_A);
+        menu.getAccessibleContext().setAccessibleDescription("This menu contains a list of options regarding the Alarm Application");
+        menuBar.add(menu);
+
+        menuItem = new JMenuItem("About this app");
+        menu.add(menuItem);
+
+        frame.setJMenuBar(menuBar);
+
+
+        menuItem.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                Dialog d = new Dialog();
+                d.messageDialog("About this app", "This app is an alarm");
+            }
+        });
+
 
 
         // Start of border layout code
