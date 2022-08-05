@@ -13,6 +13,15 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * pQueue is a sorted linked list priority queue.
+ * <p>Used for storing alarm objects in a way in which is easily sortable and scannable</p>
+ * <p>Also contains subclass Node</p>
+ *
+ * @extends Alarm
+ *
+ */
+
 public class pQueue extends Alarm {
 
 private Node headNode;
@@ -26,7 +35,17 @@ private int size;
 
     }
 
+    /* Gets and Sets */
+    public Node getHeadNode(){
+        return this.headNode;
+    }
+
     /* Class Functions */
+    /**
+    * This function adds the alarm into the priority queue and then sorts the queue
+    *
+    * @return void
+    * */
     public void add(){
 
         Alarm alarm = new Alarm();
@@ -46,6 +65,14 @@ private int size;
         size++;
         sort();
     }
+
+    /**
+     * This removes a node from the queue in place.
+     * It then ensures the queue is spliced back together.
+     *
+     * @param priority The time of the alarm to be removed is the priority in this instance.
+     * @return void
+     */
 
     public void remove(LocalTime priority){
 
@@ -69,13 +96,32 @@ private int size;
     }
 
     /* Class Supporting Functions */
+    /**
+     * Returns a boolean value based on if the queue is empty or not.
+     *
+     * @return boolean
+     */
+
     public boolean isEmpty(){
         return size == 0;
     }
 
+    /**
+     * This function returns the alarm object at the head of the priority queue.
+     * @return Alarm (Alarm object at head of queue)
+     */
     public Alarm head(){
         return headNode.getNodeData();
     }
+
+    /**
+     * This will check for alarms to see if there is one in the queue
+     * that is ready to ring. It will then remove the ringing alarm from the queue.
+     *
+     * <p>Logs to the console the next alarm time, no of alarms in queue and also the time</p>
+     *
+     * @return void
+     */
 
     public void checkForAlarms(){
 
@@ -93,7 +139,6 @@ private int size;
             }
             currentNode = nextNode;
             nextNode = nextNode.getNextNode();
-
         }
 
         try{
@@ -105,6 +150,9 @@ private int size;
 
     }
 
+    /**
+     * Sorts the priority queue. Is a utility function for the queue.
+     */
     protected void sort(){
         if(size > 1){
             for(int i = 0; i< size; i++){
@@ -123,6 +171,10 @@ private int size;
         }
     }
 
+    /**
+     * Returns the list of alarms as a string
+     * @return String
+     */
     public String toString(){
         String result = "";
 
@@ -139,6 +191,11 @@ private int size;
         return result;
     }
 
+    /**
+     * Opens a dialog with the list of alarms contained within.
+     *
+     * @return void
+     */
     public void listAlarmDialog(){
         Dialog d = new Dialog();
         if(this.isEmpty()){
@@ -148,12 +205,12 @@ private int size;
         }
     }
 
-    public void removeFromQueue(){
-
-    }
-
-    /* pQueue Subclass */
-    class Node{
+    /**
+     * Node Subclass
+     * <p>This is a node for sorted linked priority queue</p>
+     * <p>Stores an alarm object within the node</p>
+     */
+    public class Node{
 
         private Alarm nodeData;
         private Node nextNode;

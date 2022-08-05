@@ -10,6 +10,17 @@ import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Locale;
 
+
+/**
+* The alarm object.
+ * <p>
+ *     This class stores the alarm time, and also has ancilliary
+ *     methods for collecting and returning alarm times.
+ * </p>
+ * @author Chester Roberts
+*
+*/
+
 public class Alarm {
 
     public LocalTime alarmTime;
@@ -42,12 +53,20 @@ public class Alarm {
 
     /* Class Functions */
 
-    public static void main(String args[]){
-        Alarm a = new Alarm();
-
-        a.addAlarm();
-    }
-
+    /**
+     * Create an alarm by asking the user what the hour
+     * and minute for the alarm should be
+     *
+     * <p>
+     *     Uses a Dialog to create user input.
+     * </p>
+     *
+     * <p>
+     *     Stores LocalTime in alarmTime variable
+     * </p>
+     *
+     * @return void
+     * */
     public void addAlarm(){
 
         this.hour = null;
@@ -81,11 +100,20 @@ public class Alarm {
         d.messageDialog("Alarm set", "Your alarm will go off at " + this.alarmTime);
     }
 
+    /**
+     * This method rings the alarm when called
+     *
+     * <p>
+     *     Creates an audio thread and plays a chime wav
+     *     file through once when called.
+     * </p>
+     *
+     * @return void
+     *
+     * */
     protected void ring() {
         final String url = "chime.wav";
         Dialog d = new Dialog();
-
-
 
         //Set up for playing alarm chime from sound file.
         new Thread(new Runnable() {
