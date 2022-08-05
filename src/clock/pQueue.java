@@ -89,11 +89,10 @@ private int size;
                 if(currentNode.getNodeData().getAlarmTime().equals(time)){
                     this.ring();
                     remove(currentNode.getNodeData().getAlarmTime());
-                } else{
-                    currentNode = nextNode;
-                    nextNode = nextNode.getNextNode();
                 }
             }
+            currentNode = nextNode;
+            nextNode = nextNode.getNextNode();
 
         }
 
