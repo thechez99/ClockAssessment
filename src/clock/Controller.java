@@ -24,4 +24,20 @@ public class Controller {
         timer = new Timer(100, listener);
         timer.start();
     }
+
+    public Controller(Model m, pQueue alarm){
+        model = m;
+
+        listener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.update();
+                alarm.checkForAlarms();
+            }
+        };
+
+        timer = new Timer(1000, listener);
+        timer.start();
+
+    }
 }

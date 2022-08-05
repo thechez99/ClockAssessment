@@ -10,6 +10,8 @@ package clock;
 
 import java.awt.event.ActionListener;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class pQueue extends Alarm {
 
@@ -71,31 +73,37 @@ private int size;
         return size == 0;
     }
 
-    public Alarm head() throws Exception{
+    public Alarm head(){
         return headNode.getNodeData();
     }
 
     public void checkForAlarms(){
 
-        /*
-        * This function will run a separate thread which will execute once a minute
-        * to see if an alarm is ready to ring. If it is then the alarm will ring.
-        * */
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime time = LocalTime.parse(format.format(LocalTime.now()));
 
-        /*new Thread(new Runnable(){
-            @Override
-            public void run(Node currenNode){
-
-                try {
-                    if (currenNode.getNodeData().getAlarmTime().equals(LocalTime.now())){
-                        Thread.sleep(60000);
-                    }
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+        for(int i = 0; i < size; i++){
+            Node currentNode = headNode;
+            Node nextNode = currentNode.nextNode;
+            for(int j = 0; j < size; j++){
+                if(currentNode.getNodeData().getAlarmTime().equals(time)){
+                    this.ring();
+                    remove(currentNode.getNodeData().getAlarmTime());
+                } else{
+                    currentNode = nextNode;
+                    nextNode = nextNode.getNextNode();
                 }
-
             }
-        }).start();*/
+
+        }
+
+        try{
+            System.out.println("Checked for alarm, there are " + size + " alarms in the queue. The next alarm is at: " + headNode.getNodeData().getAlarmTime());
+            System.out.println("Local time is " + format.format(time));
+        } catch (Exception e){
+            System.out.println("No alarms set");
+        }
+
     }
 
     protected void sort(){
@@ -130,6 +138,15 @@ private int size;
         }
 
         return result;
+    }
+
+    public void listAlarmDialog(){
+        Dialog d = new Dialog();
+        if(this.isEmpty()){
+            d.messageDialog("No Alarms", "There are no alarms currently set.");
+        } else{
+            d.messageDialog("Alarm Times", "Your alarms will go off at: " + this.toString());
+        }
     }
 
     public void removeFromQueue(){

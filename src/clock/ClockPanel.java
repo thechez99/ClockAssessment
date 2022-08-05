@@ -56,7 +56,7 @@ public class ClockPanel extends JPanel {
         
         // Draw the numbers
         // Font font = new Font("SansSerif", Font.BOLD, size / 5);
-        Font font = new Font("SansSerif", Font.PLAIN, size / 5);
+        Font font = new Font("Serif", Font.BOLD, size / 5);
         gg.setFont(font);
         for (int n = 1; n <= 12; n++) {
             theta = (90 - n * 30) / (180 / Math.PI);
